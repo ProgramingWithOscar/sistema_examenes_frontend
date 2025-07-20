@@ -12,6 +12,6 @@ export class User {
   }
 
   public addUser(user: any){
-    return this.HttpClient.post(`${baseURL}/users`, user);
+    return this.HttpClient.post(`${baseURL}/users/`, user);
   }
 }
