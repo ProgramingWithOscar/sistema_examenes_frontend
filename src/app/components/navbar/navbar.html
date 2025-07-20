@@ -1,1 +1,17 @@
-<p>navbar works!</p>
+<mat-toolbar color="warn">
+
+  <div class="toolbar-start">
+    <a [routerLink]="'/'" mat-icon-button aria-label="Ir al inicio">
+      <mat-icon>menu_book</mat-icon>
+    </a>
+    <span class="ml-2">OTECH portal de exámenes</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <div class="toolbar-end">
+    <a  mat-button [routerLink]="'/login'" class="mr-2 text-body text-decoration-none btn shadow-sm">Iniciar sesión</a>
+    <a mat-button [routerLink]="'/signup'" class=" text-body text-decoration-none btn shadow-sm">Registrarse</a>
+  </div>
+
+</mat-toolbar>

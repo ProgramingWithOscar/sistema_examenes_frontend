@@ -12,7 +12,7 @@
                 <form #form="ngForm" (ngSubmit)="formSubmit(form)" class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
                     novalidate>
                     <div class="fv-row mb-3">
-                        <input [(ngModel)]="user.username" type="text" placeholder="Nombre de usuario" name="username"
+                        <input required [(ngModel)]="user.username" type="text" placeholder="Nombre de usuario" name="username"
                             autocomplete="off" class="form-control bg-transparent border border-1 border-gray-300 p-3">
                         <mat-hint class="text-primary px-2">El nombre de usuario debe ser único</mat-hint>
                     </div>

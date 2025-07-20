@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Importar FormsModule
-import { MatFormFieldModule } from '@angular/material/form-field'; // Importar módulo de Material
-import { MatInputModule } from '@angular/material/input'; // Importar módulo de Material
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../../services/user';
 
@@ -34,15 +34,15 @@ export class Signup implements OnInit {
   }
 
   formSubmit(form: any) {
-    if (this.user.username === '' || this.user.username == null) {
-      alert('El nombre de usuario es requerido');
+    if (this.user.username === '' || this.user.username == null && this.user.password === '' || this.user.password === null) {
+      this.toastr.warning("El nombre de usuario y contraseña son requeridos");
       return;
     }
 
     this.userService.addUser(this.user).subscribe(
       (data) => {
         console.log(data);
-        alert("Registrado con éxito");
+        this.toastr.success("Usuario registrado con exito");
         form.resetForm();
       }, 
       (error) => {
