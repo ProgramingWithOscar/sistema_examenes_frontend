@@ -10,9 +10,11 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { authInterceptorProviders } from './services/interceptors/interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    authInterceptorProviders,
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),

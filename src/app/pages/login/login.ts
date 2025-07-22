@@ -34,7 +34,11 @@ export class Login implements OnInit {
       return;
     }
     this.loginService.generateToken(this.loginData).subscribe(
-      (data) => {
+      (data:any) => {
+        this.loginService.loginUser(data?.token);
+        this.loginService.getcurrentUser().subscribe((user:any) => (
+            console.log(user)
+        ));
         this.toastr.success("Login exitoso");
       },
       (error) => {
