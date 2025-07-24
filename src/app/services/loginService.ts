@@ -1,16 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import baseURL from './helper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  
+    private loginStatusSubject = new BehaviorSubject<boolean>(this.hasToken());
+  loginStatus$ = this.loginStatusSubject.asObservable();
+
   constructor(private http: HttpClient){}
 
   // llamamos para generar el token
 
+   private hasToken(): boolean {
+    return !!localStorage.getItem("token");
+  }
   public generateToken(loginData: any){
     return this.http.post(`${baseURL}/generate-token`, loginData);
   }
@@ -21,12 +27,8 @@ export class LoginService {
     localStorage.setItem("token", token);
   }
 
-  public isLoguedIn(){
-    let tokenStr = localStorage.getItem("token");
-    if(!tokenStr) {
-      return false;
-    }
-    return true;
+   public isLoguedIn(): boolean {
+    return this.hasToken();
   }
 
   // cerramos sesion y eliminamos el token

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../../services/loginService';
 
@@ -23,7 +24,7 @@ export class Login implements OnInit {
     "password": ""
   }
 
-  constructor(private toastr:ToastrService, private loginService: LoginService){};
+  constructor(private toastr:ToastrService, private loginService: LoginService, private router:Router){};
   ngOnInit(): void {
     // Aquí puedes inicializar datos si es necesario
   }
@@ -36,10 +37,20 @@ export class Login implements OnInit {
     this.loginService.generateToken(this.loginData).subscribe(
       (data:any) => {
         this.loginService.loginUser(data?.token);
-        this.loginService.getcurrentUser().subscribe((user:any) => (
-            console.log(user)
-        ));
-        this.toastr.success("Login exitoso");
+        this.loginService.getcurrentUser().subscribe((user: any) => {
+              this.loginService.setUser(user);
+
+              if (this.loginService.getUsersRol() == "ADMIN") {
+                setTimeout(() => {
+                  this.router.navigate(["admin"]);
+                }, 200);
+              } else if (this.loginService.getUsersRol() == "NORMAL") {
+                this.router.navigate(["user-dashboard"]);
+              } else {
+                this.loginService.logout();
+              }
+            });
+
       },
       (error) => {
         this.toastr.error("Credenciales incorrectas, intenta nuevamente");
