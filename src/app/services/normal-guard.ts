@@ -15,7 +15,7 @@ export class NormalGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if (this.loginService.isLoguedIn() && this.loginService.getUsersRol() === "NORMAL") {
+    if (this.loginService.isLoguedIn() && (this.loginService.getUsersRol() === "NORMAL" || this.loginService.getUsersRol() === "ADMIN" )) {
       return true;
     }
 

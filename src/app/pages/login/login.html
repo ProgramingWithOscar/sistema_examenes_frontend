@@ -1,41 +1,50 @@
-<div class="d-flex justify-content-center align-items-center min-vh-100">
-    <!-- Contenedor principal de dos columnas -->
-    <div class="row w-100">
-        <!-- Columna 1: Formulario de login -->
-        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-            <div class="bg-body d-flex flex-column rounded-4 shadow w-100 p-4 p-md-5">
-                <div class="text-center mb-4">
-                    <h1 class="text-gray-900 fw-bolder mb-3">Login</h1>
-                    <small class="text-gray-400">OTECH EXAMS gestiona tus exámenes de manera eficiente</small>
-                </div>
-
-                <form #form="ngForm" (ngSubmit)="formSubmit(form)" class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
-                    novalidate>
-                    <div class="fv-row mb-3">
-                        <input required [(ngModel)]="loginData.username" type="text" placeholder="Nombre de usuario" name="username"
-                            autocomplete="off" class="form-control bg-transparent border border-1 border-gray-300 p-3">
-                    </div>
-
-                   
-
-                    <div class="fv-row mb-4">
-                        <input [(ngModel)]="loginData.password" type="password" placeholder="Password" name="password"
-                            autocomplete="off" class="form-control bg-transparent border border-1 border-gray-300 p-3">
-                    </div>
-
-                    <div class="d-grid mb-4">
-                        <button type="submit" class="btn btn-primary py-3">
-                            <span class="indicator-label">Iniciar sesión</span>
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-
-        <!-- Columna 2: Imagen -->
-        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-            <img src="assets/images/agency.png" alt="Imagen" class="img-fluid">
-        </div>
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+  <div class="row w-100 shadow-lg rounded-4 overflow-hidden" style="max-width: 960px;">
+    
+    <!-- Columna izquierda: Imagen -->
+    <div class="col-md-6 d-none d-md-flex bg-primary align-items-center justify-content-center p-5">
+      <img src="assets/images/agency.png" alt="Imagen de login" class="img-fluid" style="max-height: 300px;">
     </div>
+
+    <!-- Columna derecha: Login -->
+    <div class="col-12 col-md-6 bg-white p-5">
+      <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary">Iniciar sesión</h2>
+        <p class="text-muted small">Accede al sistema OTECH EXAMS y gestiona tus exámenes con inteligencia.</p>
+      </div>
+
+      <form #form="ngForm" (ngSubmit)="formSubmit(form)" novalidate>
+        <div class="form-floating mb-3">
+          <input
+            required
+            [(ngModel)]="loginData.username"
+            type="text"
+            name="username"
+            id="username"
+            class="form-control form-control-lg border border-secondary-subtle bg-light"
+            placeholder="Usuario"
+          />
+          <label for="username">Nombre de usuario</label>
+        </div>
+
+        <div class="form-floating mb-4">
+          <input
+            [(ngModel)]="loginData.password"
+            type="password"
+            name="password"
+            id="password"
+            class="form-control form-control-lg border border-secondary-subtle bg-light"
+            placeholder="Contraseña"
+          />
+          <label for="password">Contraseña</label>
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-lg">
+            Iniciar sesión
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

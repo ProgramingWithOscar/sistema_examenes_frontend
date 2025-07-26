@@ -28,3 +28,9 @@ mat-toolbar {
   outline: none !important;
 }
 
+.custom-light-blue {
+  background-color: #0d6efd
+;
+  /* azul claro personalizado */
+  color: white;
+}

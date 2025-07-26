@@ -1,34 +1,37 @@
-<mat-toolbar color="warn">
-  <div class="toolbar-start">
-    <a [routerLink]="'/'" mat-icon-button aria-label="Ir al inicio">
+<mat-toolbar class="custom-light-blue text-white shadow-sm px-3">
+  <div class="toolbar-start d-flex align-items-center">
+    <a [routerLink]="'/'" mat-icon-button aria-label="Ir al inicio" class="text-white">
       <mat-icon>menu_book</mat-icon>
     </a>
-    <span class="ml-2">OTECH portal de exámenes</span>
+    <span class="ms-2 fw-semibold">OTECH </span>
   </div>
 
-  <span class="spacer"></span>
+  <span class="flex-grow-1"></span>
 
-  <div class="toolbar-end">
+  <div class="toolbar-end d-flex align-items-center gap-2">
     <a
       *ngIf="!loginService.isLoguedIn()"  
       mat-button 
       [routerLink]="'/login'" 
-      class="mr-2 text-body text-decoration-none btn shadow-sm">Iniciar sesión</a>
-      <a
+      class="btn btn-light btn-sm">Iniciar sesión</a>
+    
+    <a
       *ngIf="!loginService.isLoguedIn()"  
       mat-button 
       [routerLink]="'/signup'" 
-      class="mr-2 text-body text-decoration-none btn shadow-sm">Registrarse</a>
-    <span *ngIf="loginService.isLoguedIn()" class="bg-success rounded text-white fw-bold p-2 px-5 m-2">
-      Bienvenido
-      {{ loginService.getUser()?.username }}
+      class="btn btn-outline-light btn-sm">Registrarse</a>
+    
+    <span 
+      *ngIf="loginService.isLoguedIn()" 
+      class="bg-success rounded-pill text-white px-3 py-1 fw-bold small">
+      Bienvenido {{ loginService.getUser()?.username }}
     </span>
+
     <a 
       *ngIf="loginService.isLoguedIn()"
       (click)="logout()"
       mat-button 
-      class="text-body text-decoration-none btn shadow-sm">Cerrar sesión</a>
-
-    
+      class="btn btn-outline-light btn-sm">Cerrar sesión</a>
   </div>
 </mat-toolbar>
+

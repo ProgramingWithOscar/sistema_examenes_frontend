@@ -19,6 +19,12 @@ export class AdminGuard implements CanActivate {
       return true;
     }
 
+    if(this.loginService.isLoguedIn() && this.loginService.getUsersRol() != "ADMIN"){
+      this.router.navigate(['user-dashboard']);
+      this.toastr.warning("Oops, parece que no tienes acceso, intenta nuevamente");
+      return false;
+    }
+
     this.router.navigate(['login']);
      this.toastr.warning("Oops, parece que no tienes acceso, intenta nuevamente");
     return false;
